@@ -1,0 +1,2898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flash USDT | Instant Generation Protocol</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2350d9a3'/%3E%3Cstop offset='50%25' stop-color='%2326A17B'/%3E%3Cstop offset='100%25' stop-color='%231a6b52'/%3E%3C/linearGradient%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='100%25' stop-color='%2380ffcc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='48' fill='url(%23g1)'/%3E%3Cpath d='M56 14 L28 48 L44 48 L38 86 L72 46 L54 46 L62 14 Z' fill='url(%23g2)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <style>
+        /* Complete styles - preserved exactly as original */
+        :root {
+            --usdt: #26A17B;
+            --usdt-dark: #1a7a5c;
+            --usdt-light: #50af95;
+            --usdt-glow: rgba(38, 161, 123, 0.4);
+            --usdt-dim: rgba(38, 161, 123, 0.1);
+            --bg: #0a0e13;
+            --bg-card: #0f1419;
+            --bg-elevated: #151c25;
+            --border: rgba(38, 161, 123, 0.12);
+            --border-active: rgba(38, 161, 123, 0.35);
+            --text: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --danger: #ef4444;
+            --whatsapp: #25D366;
+            --telegram: #0088cc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            font-size: 14px;
+            -webkit-tap-highlight-color: transparent;
+            scroll-behavior: smooth;
+        }
+
+        @media (min-width: 768px) { html { font-size: 15px; } }
+        @media (min-width: 1024px) { html { font-size: 16px; } }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            min-height: 100dvh;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(38, 161, 123, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(38, 161, 123, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow-1 {
+            width: 400px;
+            height: 400px;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--usdt);
+        }
+
+        .bg-glow-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            right: -50px;
+            background: #1a5c4a;
+        }
+
+        .app {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px;
+            padding-bottom: 100px;
+        }
+
+        @media (min-width: 768px) {
+            .app { max-width: 540px; padding: 0 24px; padding-bottom: 40px; }
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 14, 19, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            margin: 0 calc(-50vw + 50%);
+            padding: 14px calc(50vw - 50% + 16px);
+        }
+
+        @media (min-width: 768px) {
+            .header { padding: 18px calc(50vw - 50% + 24px); }
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: radial-gradient(circle, var(--usdt-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: logoPulse 2s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .logo-icon .bolt {
+            animation: boltGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes boltGlow {
+            0% { filter: drop-shadow(0 0 2px rgba(128, 255, 204, 0.5)); }
+            100% { filter: drop-shadow(0 0 6px rgba(128, 255, 204, 0.9)); }
+        }
+
+        .logo-ring {
+            animation: ringRotate 8s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes ringRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--usdt);
+        }
+
+        .network-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--usdt-dim);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--usdt-light);
+        }
+
+        .network-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--usdt-light);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .connect-btn {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, var(--usdt), var(--usdt-dark));
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px var(--usdt-glow);
+        }
+
+        .connect-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px var(--usdt-glow);
+        }
+
+        .connect-btn.connected {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-active);
+            box-shadow: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 0 28px;
+        }
+
+        @media (min-width: 768px) {
+            .hero { padding: 56px 0 36px; }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: var(--usdt-dim);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--usdt-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title { font-size: 2.75rem; }
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--usdt-light), var(--usdt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            max-width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 10px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--border-active);
+        }
+
+        .stat-value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--usdt-light);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--usdt), var(--usdt-dark));
+            border: none;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px var(--usdt-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--usdt-glow);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* WhatsApp Button */
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--whatsapp);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Telegram Button */
+        .btn-telegram {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--telegram);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .btn-telegram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+        }
+
+        .btn-telegram svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Telegram Contact Bar */
+        .telegram-contact-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 136, 204, 0.1);
+            border: 1px solid rgba(0, 136, 204, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-top: 20px;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .contact-row span {
+            color: var(--telegram);
+            font-weight: 600;
+        }
+
+        .contact-row a {
+            color: var(--telegram);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-row a:hover {
+            text-decoration: underline;
+        }
+
+        /* Floating Telegram Button */
+        .float-telegram {
+            position: fixed;
+            bottom: 100px;
+            right: 16px;
+            z-index: 99;
+        }
+
+        .float-telegram a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: var(--telegram);
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+            transition: all 0.2s;
+        }
+
+        .float-telegram a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.6);
+        }
+
+        .float-telegram svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+
+        @media (min-width: 768px) {
+            .float-telegram {
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+
+        .features {
+            margin: 32px 0;
+        }
+
+        .features-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            gap: 14px;
+            transition: all 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-active);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--usdt-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--usdt);
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .how-it-works {
+            margin: 32px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .how-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .how-title svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--usdt);
+        }
+
+        .how-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .how-text p {
+            margin-bottom: 12px;
+        }
+
+        .how-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .how-text strong {
+            color: var(--text);
+        }
+
+        .info-section {
+            margin: 32px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .info-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-title svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--usdt);
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .info-item-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--usdt-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-item-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--usdt);
+        }
+
+        .info-item-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .info-item-text strong {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .info-item-text span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            padding: 14px;
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .faq-question {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .faq-answer {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .partners {
+            padding: 24px 0;
+            text-align: center;
+        }
+
+        .partners-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .partners-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .partner-icon {
+            width: 36px;
+            height: 36px;
+            opacity: 0.7;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-icon:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .partner-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-card);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--usdt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-badge {
+            padding: 5px 10px;
+            background: var(--usdt-dim);
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--usdt-light);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .form-hint {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--usdt);
+            box-shadow: 0 0 0 3px var(--usdt-dim);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .summary {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .summary-row:not(:last-child) {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-label { color: var(--text-muted); }
+
+        .summary-value {
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .summary-value.highlight { color: var(--usdt-light); }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            padding: 16px;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            max-height: 90vh;
+            overflow: hidden;
+            animation: modalIn 0.2s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-elevated);
+            color: var(--text);
+        }
+
+        .modal-body {
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .wallet-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .wallet-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .wallet-option:hover {
+            background: var(--bg-elevated);
+            border-color: var(--border-active);
+        }
+
+        .wallet-option-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .wallet-option-info { flex: 1; }
+        .wallet-option-name { font-weight: 600; font-size: 0.95rem; }
+        .wallet-option-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+        .process-content {
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--border);
+            border-top-color: var(--usdt);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .process-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .process-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .tx-steps {
+            padding: 20px;
+        }
+
+        .tx-step {
+            display: flex;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tx-step:last-child { border-bottom: none; }
+
+        .tx-step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .tx-step.active .tx-step-num {
+            background: var(--usdt-dim);
+            border-color: var(--usdt);
+            color: var(--usdt);
+        }
+
+        .tx-step.done .tx-step-num {
+            background: var(--usdt);
+            border-color: var(--usdt);
+            color: #fff;
+        }
+
+        .tx-step-content { flex: 1; padding-top: 4px; }
+        .tx-step-title { font-size: 0.9rem; font-weight: 500; }
+        .tx-step-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 3px; }
+        .tx-step.active .tx-step-desc { color: var(--text-secondary); }
+
+        .tx-hash {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--usdt);
+            margin-top: 6px;
+            word-break: break-all;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--usdt-dim);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .success-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--usdt);
+        }
+
+        .result-box {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .result-row:not(:last-child) { border-bottom: 1px solid var(--border); }
+        .result-label { color: var(--text-muted); }
+        .result-value { font-weight: 500; font-family: 'JetBrains Mono', monospace; }
+
+        .tx-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .tx-link button {
+            padding: 6px 12px;
+            background: var(--usdt-dim);
+            border: none;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--usdt);
+            cursor: pointer;
+        }
+
+        .tx-link button:hover {
+            background: var(--usdt);
+            color: #fff;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            animation: fadeInTx 0.5s ease-out;
+        }
+
+        @keyframes fadeInTx {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--usdt-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity-icon svg { width: 20px; height: 20px; stroke: var(--usdt); }
+        .activity-info { flex: 1; }
+        .activity-title { font-size: 0.9rem; font-weight: 500; }
+        .activity-meta { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+        .activity-value { text-align: right; }
+        .activity-amount { font-size: 0.9rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; color: var(--usdt); }
+        .activity-status { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 20px;
+            color: var(--text-muted);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 19, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 10px 0;
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
+            z-index: 100;
+        }
+
+        @media (min-width: 768px) { .bottom-nav { display: none; } }
+
+        .nav-items {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-family: inherit;
+            transition: color 0.2s;
+        }
+
+        .nav-item svg { width: 22px; height: 22px; }
+        .nav-item span { font-size: 0.65rem; font-weight: 500; }
+        .nav-item.active { color: var(--usdt); }
+
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        .footer {
+            text-align: center;
+            padding: 24px 0 16px;
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .footer-brand {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .footer-sep {
+            opacity: 0.4;
+        }
+
+        .footer-sub {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+            margin-top: 8px;
+        }
+
+        .footer-copy {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            opacity: 0.5;
+            margin-top: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .footer { padding: 32px 0 24px; }
+        }
+
+        .hidden { display: none !important; }
+
+        .payment-selects {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .payment-select-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .payment-select-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .payment-custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .payment-custom-select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .payment-custom-select-trigger:hover {
+            border-color: var(--border-active);
+        }
+
+        .payment-custom-select.open .payment-custom-select-trigger {
+            border-color: var(--usdt);
+        }
+
+        .payment-custom-select-trigger .crypto-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .payment-custom-select-trigger .crypto-label img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .payment-custom-select-trigger svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .payment-custom-select.open .payment-custom-select-trigger svg {
+            transform: rotate(180deg);
+        }
+
+        .payment-custom-select-options {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 6px;
+            z-index: 100;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .payment-custom-select.open .payment-custom-select-options {
+            display: block;
+        }
+
+        .payment-crypto-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .payment-crypto-option:hover {
+            background: var(--bg-secondary);
+        }
+
+        .payment-crypto-option.selected {
+            background: var(--usdt-dim);
+        }
+
+        .payment-crypto-option .crypto-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .payment-crypto-option .crypto-label img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .payment-crypto-option .option-check {
+            width: 16px;
+            height: 16px;
+            color: var(--usdt);
+            display: none;
+        }
+
+        .payment-crypto-option.selected .option-check {
+            display: block;
+        }
+
+        .payment-network-select {
+            display: none;
+        }
+
+        .payment-network-select.visible {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .payment-address-box {
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--usdt);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .payment-send-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+
+        .payment-send-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .payment-send-crypto {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--usdt-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .payment-send-crypto img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .payment-to-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .payment-address {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .payment-address-text {
+            flex: 1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text);
+            word-break: break-all;
+        }
+
+        .payment-copy-btn {
+            padding: 8px 14px;
+            background: var(--usdt);
+            border: none;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .payment-copy-btn:hover {
+            background: var(--usdt-dark);
+        }
+
+        .payment-amount-info {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .payment-amount-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .payment-amount-row:not(:last-child) {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .payment-amount-label {
+            color: var(--text-muted);
+        }
+
+        .payment-amount-value {
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .payment-amount-value.highlight {
+            color: var(--usdt-light);
+        }
+
+        .payment-qr {
+            display: flex;
+            justify-content: center;
+            padding: 16px;
+            background: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .payment-qr canvas {
+            max-width: 160px;
+            max-height: 160px;
+            display: block;
+        }
+
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            padding: 16px;
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .qr-container canvas,
+        .qr-container img {
+            max-width: 160px;
+            max-height: 160px;
+        }
+
+        .payment-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .custom-select-trigger .option-label,
+        .custom-select-option .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tariff-section {
+            margin-bottom: 20px;
+        }
+
+        .tariff-section-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tariff-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .tariff-card {
+            position: relative;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .tariff-card:hover {
+            border-color: var(--border-active);
+            transform: translateY(-2px);
+        }
+
+        .tariff-card.active {
+            border-color: var(--usdt);
+            background: var(--usdt-dim);
+        }
+
+        .tariff-card.popular::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 8px;
+            right: -24px;
+            background: var(--usdt);
+            color: #fff;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 3px 28px;
+            transform: rotate(45deg);
+        }
+
+        .tariff-amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .tariff-amount span {
+            font-size: 0.75rem;
+            color: var(--usdt-light);
+            font-weight: 500;
+        }
+
+        .tariff-price {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--usdt-light);
+        }
+
+        .tariff-price-usd {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .tariff-features {
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .tariff-check {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: var(--usdt);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tariff-card.active .tariff-check {
+            display: flex;
+        }
+
+        .tariff-check svg {
+            width: 12px;
+            height: 12px;
+            stroke: #fff;
+        }
+
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .custom-select-trigger:hover {
+            border-color: var(--border-active);
+        }
+
+        .custom-select.open .custom-select-trigger {
+            border-color: var(--usdt);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .custom-select-trigger svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .custom-select.open .custom-select-trigger svg {
+            transform: rotate(180deg);
+            stroke: var(--usdt);
+        }
+
+        .custom-select-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--usdt);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+            z-index: 100;
+            display: none;
+        }
+
+        .custom-select.open .custom-select-options {
+            display: block;
+        }
+
+        .custom-select-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .custom-select-option:hover {
+            background: var(--usdt-dim);
+            color: var(--text);
+        }
+
+        .custom-select-option.selected {
+            background: var(--usdt-dim);
+            color: var(--usdt-light);
+        }
+
+        .custom-select-option .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .custom-select-option .option-icon {
+            width: 18px;
+            height: 18px;
+            stroke: var(--usdt);
+        }
+
+        .custom-select-option .option-check {
+            width: 16px;
+            height: 16px;
+            stroke: var(--usdt);
+            opacity: 0;
+        }
+
+        .custom-select-option.selected .option-check {
+            opacity: 1;
+        }
+
+        .input-error {
+            font-size: 0.75rem;
+            color: var(--danger);
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="app">
+        <header class="header">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 100 100">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#50d9a3"></stop>
+                                    <stop offset="50%" stop-color="#26A17B"></stop>
+                                    <stop offset="100%" stop-color="#1a6b52"></stop>
+                                </linearGradient>
+                                <linearGradient id="boltGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#ffffff"></stop>
+                                    <stop offset="100%" stop-color="#80ffcc"></stop>
+                                </linearGradient>
+                                <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feGaussianBlur stdDeviation="2" result="blur"></feGaussianBlur>
+                                    <feMerge>
+                                        <feMergeNode in="blur"></feMergeNode>
+                                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <circle cx="50" cy="50" r="48" fill="url(#logoGrad)"></circle>
+                            <g class="logo-ring">
+                                <circle cx="50" cy="50" r="44" fill="none" stroke="#80ffcc" stroke-width="1" opacity="0.3" stroke-dasharray="8 4"></circle>
+                            </g>
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#80ffcc" stroke-width="0.5" opacity="0.2"></circle>
+                            <path class="bolt" d="M56 14 L28 48 L44 48 L38 86 L72 46 L54 46 L62 14 Z" fill="url(#boltGrad)" filter="url(#glowFilter)"></path>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Flash<span>USDT</span></span>
+                </div>
+                <div class="network-badge">
+                    <div class="network-dot"></div>
+                    <span>Multi-Chain</span>
+                </div>
+                <button class="connect-btn" id="connectBtn">Buy Flash</button>
+            </div>
+        </header>
+
+        <!-- Telegram Contact Bar -->
+        <div class="telegram-contact-bar">
+            <div class="contact-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--telegram)">
+                    <path d="M12 2C6.477 2 2 6.477 2 12C2 14.167 2.695 16.208 3.904 17.848L2.4 22L7.152 20.496C8.792 21.305 10.733 22 12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2ZM17.5 14.375C17.43 14.542 16.73 15.356 16.3 15.8C15.87 16.244 15.58 16.267 15.337 16.3C15.093 16.333 13.567 15.933 11.667 15.15C9.643 14.329 8.243 12.879 7.97 12.571C7.697 12.263 7.424 11.97 7.63 11.692C7.79 11.472 8.01 11.164 8.169 11C8.328 10.836 8.397 10.714 8.5 10.514C8.603 10.314 8.55 10.229 8.47 10.063C8.39 9.897 7.973 8.868 7.78 8.4C7.587 7.932 7.38 8.001 7.214 8.009C7.047 8.017 6.84 8.014 6.634 8.014C6.427 8.014 6.137 8.083 5.864 8.4C5.59 8.717 4.8 9.479 4.8 10.959C4.8 12.439 5.897 13.918 6.056 14.129C6.216 14.34 8.038 17.156 10.79 18.257C13.541 19.358 13.801 19.349 14.359 19.297C14.918 19.245 16.143 18.784 16.39 18.067C16.637 17.35 16.637 16.758 16.568 16.636C16.498 16.514 15.352 16.315 15.176 16.155C15.001 15.996 14.887 15.927 14.654 15.927C14.421 15.927 14.28 15.996 14.06 16.216C13.84 16.436 13.435 16.897 12.986 17.063C12.537 17.229 12.19 17.264 11.896 17.264C11.527 17.264 11.233 17.155 10.871 16.995C10.509 16.836 9.387 16.315 8.351 15.719C7.315 15.123 6.643 14.353 6.255 13.932C5.868 13.51 5.48 12.918 5.48 12.284C5.48 11.651 5.836 10.957 5.929 10.835C6.022 10.714 6.128 10.605 6.216 10.497C6.304 10.388 6.435 10.237 6.541 10.149C6.647 10.061 6.817 9.897 6.948 9.897C7.079 9.897 7.23 9.897 7.352 9.897C7.474 9.897 7.644 9.863 7.79 9.811C7.936 9.759 8.136 9.69 8.295 9.863C8.455 10.036 8.905 11.137 8.905 11.137C8.905 11.137 8.813 11.373 8.744 11.583C8.675 11.794 8.529 11.97 8.384 12.129C8.238 12.289 8.137 12.449 7.97 12.608C7.804 12.768 7.658 13.064 7.658 13.36C7.658 13.655 8.137 14.155 8.877 14.712C9.617 15.27 10.871 16.273 12.651 16.657C14.431 17.041 15.756 16.995 16.143 16.907C16.53 16.819 17.009 16.523 17.185 16.364C17.36 16.205 17.411 16.096 17.48 15.937C17.549 15.777 17.656 15.356 17.5 14.375Z"></path>
+                </svg>
+                <span>24/7 Support:</span>
+                <a href="https://t.me/AnnCod" target="_blank">@AnnCod</a>
+            </div>
+        </div>
+
+        <!-- Home Panel -->
+        <div id="homePanel" class="panel active">
+            <section class="hero">
+                <div class="hero-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Verified Protocol
+                </div>
+                <h1 class="hero-title">
+                    Instant <span class="highlight">Flash USDT</span><br>Generation
+                </h1>
+                <p class="hero-desc">
+                    Generate temporary USDT tokens that appear as real balance in any EVM wallet or exchange
+                </p>
+            </section>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value" id="statVol">$2.4B</div>
+                    <div class="stat-label">Volume</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statTx">847K</div>
+                    <div class="stat-label">Transactions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">99.9%</div>
+                    <div class="stat-label">Success</div>
+                </div>
+            </div>
+
+            <!-- Generator Card -->
+            <div class="main-card" style="margin-top: 24px;" id="generator">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="card-title-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                            </svg>
+                        </div>
+                        Flash Generator
+                    </div>
+                    <div class="card-badge">Ready</div>
+                </div>
+                <div class="card-body">
+                    <!-- Tariff Selection -->
+                    <div class="tariff-section">
+                        <div class="tariff-section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--usdt)" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            Select Amount
+                        </div>
+                        <div class="tariff-grid" id="tariffGrid">
+                            <div class="tariff-card" data-amount="50000">
+                                <div class="tariff-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="tariff-amount">50K <span>USDT</span></div>
+                                <div class="tariff-price"><span class="tariff-price-usd">from</span> $50</div>
+                                <div class="tariff-features">Perfect for testing</div>
+                            </div>
+                            <div class="tariff-card active" data-amount="100000">
+                                <div class="tariff-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="tariff-amount">100K <span>USDT</span></div>
+                                <div class="tariff-price"><span class="tariff-price-usd">from</span> $80</div>
+                                <div class="tariff-features">Best for demos</div>
+                            </div>
+                            <div class="tariff-card" data-amount="500000">
+                                <div class="tariff-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="tariff-amount">500K <span>USDT</span></div>
+                                <div class="tariff-price"><span class="tariff-price-usd">from</span> $190</div>
+                                <div class="tariff-features">For serious proofs</div>
+                            </div>
+                            <div class="tariff-card" data-amount="1000000">
+                                <div class="tariff-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="tariff-amount">1M <span>USDT</span></div>
+                                <div class="tariff-price"><span class="tariff-price-usd">from</span> $310</div>
+                                <div class="tariff-features">Maximum impact</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="flashAmount" value="100000">
+                    </div>
+
+                    <!-- Duration Selection -->
+                    <div class="tariff-section">
+                        <div class="tariff-section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--usdt)" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                            </svg>
+                            Visibility Duration
+                        </div>
+                        <div class="custom-select" id="durationSelect">
+                            <div class="custom-select-trigger" id="durationTrigger">
+                                <span>24 Hours</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                            <div class="custom-select-options" id="durationOptions">
+                                <div class="custom-select-option" data-duration="3600" data-multiplier="0.5">
+                                    <span class="option-label">
+                                        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                                        </svg>
+                                        1 Hour
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-duration="21600" data-multiplier="0.7">
+                                    <span class="option-label">
+                                        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                                        </svg>
+                                        6 Hours
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-duration="43200" data-multiplier="0.85">
+                                    <span class="option-label">
+                                        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                                        </svg>
+                                        12 Hours
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option selected" data-duration="86400" data-multiplier="1">
+                                    <span class="option-label">
+                                        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                                        </svg>
+                                        24 Hours
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-duration="259200" data-multiplier="1.3">
+                                    <span class="option-label">
+                                        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                                        </svg>
+                                        130 Days
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-duration="604800" data-multiplier="1.6">
+                                    <span class="option-label">
+                                        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                                        </svg>
+                                        365 Days
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="flashDuration" value="86400">
+                    </div>
+
+                    <!-- Network Selection -->
+                    <div class="tariff-section">
+                        <div class="tariff-section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--usdt)" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            Select Network
+                        </div>
+                        <div class="custom-select" id="networkSelect">
+                            <div class="custom-select-trigger" id="networkTrigger">
+                                <span class="option-label">
+                                    <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/eth.svg" alt="ETH" style="width:20px;height:20px;" loading="lazy">
+                                    Ethereum (ERC20)
+                                </span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                            <div class="custom-select-options" id="networkOptions">
+                                <div class="custom-select-option selected" data-network="ethereum">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/eth.svg" alt="ETH" style="width:20px;height:20px;" loading="lazy">
+                                        Ethereum (ERC20)
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-network="bsc">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/bnb.svg" alt="BNB" style="width:20px;height:20px;" loading="lazy">
+                                        BNB Smart Chain (BEP20)
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-network="tron">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/trx.svg" alt="TRX" style="width:20px;height:20px;" loading="lazy">
+                                        Tron (TRC20)
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-network="polygon">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/matic.svg" alt="MATIC" style="width:20px;height:20px;" loading="lazy">
+                                        Polygon
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-network="arbitrum">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/arb.svg" alt="ARB" style="width:20px;height:20px;" loading="lazy">
+                                        Arbitrum
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-network="base">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/eth.svg" alt="BASE" style="width:20px;height:20px;" loading="lazy">
+                                        Base
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-network="avalanche">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/avax.svg" alt="AVAX" style="width:20px;height:20px;" loading="lazy">
+                                        Avalanche C-Chain
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="custom-select-option" data-network="fantom">
+                                    <span class="option-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/ftm.svg" alt="FTM" style="width:20px;height:20px;" loading="lazy">
+                                        Fantom Opera
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Target Address -->
+                    <div class="form-group">
+                        <div class="form-label">
+                            <span>Target Address</span>
+                            <span class="form-hint" id="addressHint">0x... (42 chars)</span>
+                        </div>
+                        <input type="text" class="form-input" id="targetAddress" placeholder="0x...">
+                        <div class="input-error" id="addressError" style="display: none;"></div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary">
+                        <div class="summary-row">
+                            <span class="summary-label">Flash Amount</span>
+                            <span class="summary-value highlight" id="summaryAmount">100,000 USDT</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Duration</span>
+                            <span class="summary-value" id="summaryDuration">24 Hours</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Total Price</span>
+                            <span class="summary-value highlight" id="summaryPrice">$80.00</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" id="generateBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                        </svg>
+                        Buy Flash USDT
+                    </button>
+                </div>
+            </div>
+
+            <!-- Features / Use Cases -->
+            <div class="features">
+                <div class="features-title">Use Cases</div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-name">Proof of Funds</div>
+                            <div class="feature-desc">Demonstrate liquidity for verification processes, lending protocols, and partnership negotiations</div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8"></path><path d="M12 17v4"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-name">Testing &amp; Development</div>
+                            <div class="feature-desc">Test dApp integrations, smart contracts, and wallet interfaces with realistic token balances</div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-name">Temporary Visibility</div>
+                            <div class="feature-desc">Time-limited token display for screenshots, demonstrations, and short-term verification needs</div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"></path>
+                                <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+                                <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"></path>
+                                <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"></path>
+                                <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"></path>
+                                <path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"></path>
+                                <path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"></path>
+                                <path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-name">API Integration Testing</div>
+                            <div class="feature-desc">Validate exchange APIs, trading bots, and portfolio trackers with simulated high-value balances</div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-name">Social Credibility</div>
+                            <div class="feature-desc">Build trust in trading communities by displaying substantial holdings for mentorship or group access</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="how-it-works">
+                <div class="how-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    How Flash USDT Works
+                </div>
+                <div class="how-text">
+                    <p>Flash USDT utilizes the same <strong>ERC-20 token standard</strong> and contract interface as genuine Tether tokens. When wallets and exchanges query the blockchain, they read the standard balanceOf() function which returns your flash balance.</p>
+                    <p>The tokens appear in <strong>MetaMask, Trust Wallet, Coinbase</strong>, and exchange deposit interfaces because they implement the identical token metadata — same symbol, decimals, and contract events that scanners recognize.</p>
+                    <p><strong>Important:</strong> Flash tokens are temporary visibility tokens. They cannot be transferred, traded, or withdrawn as real value. Duration determines how long the balance remains visible before automatic expiration.</p>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <div class="info-section">
+                <div class="info-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    Key Features
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="info-item-text">
+                            <strong>Instant Delivery</strong>
+                            <span>Tokens appear in your wallet within 30 seconds after payment confirmation</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <div class="info-item-text">
+                            <strong>Fully Anonymous</strong>
+                            <span>No KYC required, no personal data collected, crypto payments only</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="info-item-text">
+                            <strong>Flexible Duration</strong>
+                            <span>Choose visibility period from 1 hour to 365 days based on your needs</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
+                            </svg>
+                        </div>
+                        <div class="info-item-text">
+                            <strong>Multi-Network</strong>
+                            <span>Works on Ethereum, BSC, Tron, Polygon, Arbitrum, Base, Avalanche, Fantom</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="info-section">
+                <div class="info-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Frequently Asked Questions
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">What happens when the duration expires?</div>
+                        <div class="faq-answer">The flash balance automatically disappears from your wallet display. The tokens are burned and no longer visible in any interface or block explorer.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Is this legal to use?</div>
+                        <div class="faq-answer">Flash USDT is designed for legitimate purposes like testing, demonstrations, and proof of funds. Using it to deceive others in financial transactions may violate local laws. Always use responsibly.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Can I extend the duration after purchase?</div>
+                        <div class="faq-answer">Currently, duration cannot be extended after the flash is generated. You would need to purchase a new flash with longer duration if needed.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How fast will I receive the Flash USDT?</div>
+                        <div class="faq-answer">Flash tokens are delivered within 30-60 seconds after your payment is confirmed on the blockchain. Network congestion may slightly affect delivery time.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Which wallets are supported?</div>
+                        <div class="faq-answer">Flash USDT works with all major wallets including MetaMask, Trust Wallet, Coinbase Wallet, and any wallet that supports ERC-20, BEP-20, or TRC-20 tokens.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partners -->
+            <div class="partners">
+                <div class="partners-label">Supported Networks</div>
+                <div class="partners-logos">
+                    <div class="partner-icon"><img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/eth.svg" alt="Ethereum" style="width:36px;height:36px;" loading="lazy"></div>
+                    <div class="partner-icon"><img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/bnb.svg" alt="BNB" style="width:36px;height:36px;" loading="lazy"></div>
+                    <div class="partner-icon"><img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/trx.svg" alt="Tron" style="width:36px;height:36px;" loading="lazy"></div>
+                    <div class="partner-icon"><img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/matic.svg" alt="Polygon" style="width:36px;height:36px;" loading="lazy"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Panel -->
+        <div id="activityPanel" class="panel">
+            <div class="main-card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title">Transaction History</div>
+                </div>
+                <div class="card-body" id="activityList">
+                    <div class="empty-state">No transactions yet</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-items">
+                <button class="nav-item active" data-panel="home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    </svg>
+                    <span>Home</span>
+                </button>
+                <button class="nav-item" data-panel="activity">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>Activity</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="footer-brand">FlashUSDT Protocol</span>
+                <span class="footer-sep">·</span>
+                <span>v3.1.0</span>
+                <span class="footer-sep">·</span>
+                <a href="https://t.me/AnnCod" target="_blank" style="color: var(--telegram);">Telegram</a>
+                <span class="footer-sep">·</span>
+            </div>
+            <div class="footer-sub">EVM Networks · Tron · Base · Arbitrum · Avalanche · Fantom</div>
+            <div class="footer-copy">© 2026 flasherusdt.shop</div>
+        </footer>
+    </div>
+
+    <!-- Floating Telegram Button -->
+    <div class="float-telegram">
+        <a href="https://t.me/AnnCod" target="_blank">
+            <svg viewBox="0 0 24 24" fill="white">
+                <path d="M12 2C6.477 2 2 6.477 2 12C2 14.167 2.695 16.208 3.904 17.848L2.4 22L7.152 20.496C8.792 21.305 10.733 22 12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2ZM17.5 14.375C17.43 14.542 16.73 15.356 16.3 15.8C15.87 16.244 15.58 16.267 15.337 16.3C15.093 16.333 13.567 15.933 11.667 15.15C9.643 14.329 8.243 12.879 7.97 12.571C7.697 12.263 7.424 11.97 7.63 11.692C7.79 11.472 8.01 11.164 8.169 11C8.328 10.836 8.397 10.714 8.5 10.514C8.603 10.314 8.55 10.229 8.47 10.063C8.39 9.897 7.973 8.868 7.78 8.4C7.587 7.932 7.38 8.001 7.214 8.009C7.047 8.017 6.84 8.014 6.634 8.014C6.427 8.014 6.137 8.083 5.864 8.4C5.59 8.717 4.8 9.479 4.8 10.959C4.8 12.439 5.897 13.918 6.056 14.129C6.216 14.34 8.038 17.156 10.79 18.257C13.541 19.358 13.801 19.349 14.359 19.297C14.918 19.245 16.143 18.784 16.39 18.067C16.637 17.35 16.637 16.758 16.568 16.636C16.498 16.514 15.352 16.315 15.176 16.155C15.001 15.996 14.887 15.927 14.654 15.927C14.421 15.927 14.28 15.996 14.06 16.216C13.84 16.436 13.435 16.897 12.986 17.063C12.537 17.229 12.19 17.264 11.896 17.264C11.527 17.264 11.233 17.155 10.871 16.995C10.509 16.836 9.387 16.315 8.351 15.719C7.315 15.123 6.643 14.353 6.255 13.932C5.868 13.51 5.48 12.918 5.48 12.284C5.48 11.651 5.836 10.957 5.929 10.835C6.022 10.714 6.128 10.605 6.216 10.497C6.304 10.388 6.435 10.237 6.541 10.149C6.647 10.061 6.817 9.897 6.948 9.897C7.079 9.897 7.23 9.897 7.352 9.897C7.474 9.897 7.644 9.863 7.79 9.811C7.936 9.759 8.136 9.69 8.295 9.863C8.455 10.036 8.905 11.137 8.905 11.137C8.905 11.137 8.813 11.373 8.744 11.583C8.675 11.794 8.529 11.97 8.384 12.129C8.238 12.289 8.137 12.449 7.97 12.608C7.804 12.768 7.658 13.064 7.658 13.36C7.658 13.655 8.137 14.155 8.877 14.712C9.617 15.27 10.871 16.273 12.651 16.657C14.431 17.041 15.756 16.995 16.143 16.907C16.53 16.819 17.009 16.523 17.185 16.364C17.36 16.205 17.411 16.096 17.48 15.937C17.549 15.777 17.656 15.356 17.5 14.375Z"></path>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Wallet Modal -->
+    <div class="modal-overlay" id="walletModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Connect Wallet</div>
+                <button class="modal-close" id="closeWalletModal">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="wallet-options">
+                    <div class="wallet-option" data-wallet="MetaMask">
+                        <div class="wallet-option-icon">
+                            <svg viewBox="0 0 142 136.878" width="40" height="40">
+                                <path fill="#FF5C16" d="M132.682,132.192l-30.583-9.106l-23.063,13.787l-16.092-0.007l-23.077-13.78l-30.569,9.106L0,100.801l9.299-34.839L0,36.507L9.299,0l47.766,28.538h27.85L132.682,0l9.299,36.507l-9.299,29.455l9.299,34.839L132.682,132.192z"></path>
+                                <path fill="#FF5C16" d="M9.305,0l47.767,28.558l-1.899,19.599L9.305,0z M39.875,100.814l21.017,16.01l-21.017,6.261C39.875,123.085,39.875,100.814,39.875,100.814z M59.212,74.345l-4.039-26.174L29.317,65.97l-0.014-0.007v0.013l0.08,18.321l10.485-9.951L59.212,74.345z M132.682,0L84.915,28.558l1.893,19.599L132.682,0z M102.113,100.814l-21.018,16.01l21.018,6.261V100.814z M112.678,65.975h0.007v-0.013l-0.006,0.007L86.815,48.171l-4.039,26.174h19.336l10.492,9.95C112.604,84.295,112.678,65.975,112.678,65.975z"></path>
+                                <path fill="#E34807" d="M39.868,123.085l-30.569,9.106L0,100.814h39.868C39.868,100.814,39.868,123.085,39.868,123.085z M59.205,74.338l5.839,37.84l-8.093-21.04L29.37,84.295l10.491-9.956h19.344z M102.112,123.085l30.57,9.106l9.299-31.378h-39.869C102.112,100.814,102.112,123.085,102.112,123.085z M82.776,74.338l-5.839,37.84l8.092-21.04l27.583-6.843l-10.498-9.956H82.776z"></path>
+                                <path fill="#FF8D5D" d="M0,100.801l9.299-34.839h19.997l0.073,18.327l27.584,6.843l8.092,21.039l-4.16,4.633l-21.017-16.01H0z M141.981,100.801l-9.299-34.839h-19.998l-0.073,18.327l-27.582,6.843l-8.093,21.039l4.159,4.633l21.018-16.01h39.868z M84.915,28.538h-27.85l-1.891,19.599l9.872,64.013h11.891l9.878-64.013z"></path>
+                                <path fill="#661800" d="M9.299,0L0,36.507l9.299,29.455h19.997l25.87-17.804L9.299,0z M53.426,81.938h-9.059l-4.932,4.835l17.524,4.344l-3.533-9.186z M132.682,0l9.299,36.507l-9.299,29.455h-19.998L86.815,48.158L132.682,0z M88.568,81.938h9.072l4.932,4.841l-17.544,4.353l3.54-9.201z M79.029,124.385l2.067-7.567l-4.16-4.633h-11.9l-4.159,4.633l2.066,7.567"></path>
+                                <path fill="#C0C4CD" d="M79.029,124.384v12.495H62.945v-12.495z"></path>
+                                <path fill="#E7EBF6" d="M39.875,123.072l23.083,13.8v-12.495l-2.067-7.566C60.891,116.811,39.875,123.072,39.875,123.072z M102.113,123.072l-23.084,13.8v-12.495l2.067-7.566C81.096,116.811,102.113,123.072,102.113,123.072z"></path>
+                            </svg>
+                        </div>
+                        <div class="wallet-option-info">
+                            <div class="wallet-option-name">MetaMask</div>
+                            <div class="wallet-option-desc">Browser extension</div>
+                        </div>
+                    </div>
+                    <div class="wallet-option" data-wallet="Trust Wallet">
+                        <div class="wallet-option-icon">
+                            <svg viewBox="0 0 512 512" width="40" height="40">
+                                <path d="M37.523 83.593L255.21 13.046v488.371C99.709 436.301 37.523 311.5 37.523 240.964V83.593z" fill="#0500ff"></path>
+                            </svg>
+                        </div>
+                        <div class="wallet-option-info">
+                            <div class="wallet-option-name">Trust Wallet</div>
+                            <div class="wallet-option-desc">Mobile wallet</div>
+                        </div>
+                    </div>
+                    <div class="wallet-option" data-wallet="WalletConnect">
+                        <div class="wallet-option-icon">
+                            <svg viewBox="0 0 400 400" width="40" height="40">
+                                <circle cx="200" cy="200" fill="#3396ff" r="199.5"></circle>
+                                <path d="m122.519 148.965c42.791-41.729 112.171-41.729 154.962 0l5.15 5.022c2.14 2.086 2.14 5.469 0 7.555l-17.617 17.18c-1.07 1.043-2.804 1.043-3.874 0l-7.087-6.911c-29.853-29.111-78.253-29.111-108.106 0l-7.59 7.401c-1.07 1.043-2.804 1.043-3.874 0l-17.617-17.18c-2.14-2.086-2.14-5.469 0-7.555zm191.397 35.529 15.679 15.29c2.14 2.086 2.14 5.469 0 7.555l-70.7 68.944c-2.139 2.087-5.608 2.087-7.748 0l-50.178-48.931c-.535-.522-1.402-.522-1.937 0l-50.178 48.931c-2.139 2.087-5.608 2.087-7.748 0l-70.7015-68.945c-2.1396-2.086-2.1396-5.469 0-7.555l15.6795-15.29c2.1396-2.086 5.6085-2.086 7.7481 0l50.1789 48.932c.535.522 1.402.522 1.937 0l50.177-48.932c2.139-2.087 5.608-2.087 7.748 0l50.179 48.932c.535.522 1.402.522 1.937 0l50.179-48.931c2.139-2.087 5.608-2.087 7.748 0z" fill="#fff"></path>
+                            </svg>
+                        </div>
+                        <div class="wallet-option-info">
+                            <div class="wallet-option-name">WalletConnect</div>
+                            <div class="wallet-option-desc">Scan QR code</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connecting Modal -->
+    <div class="modal-overlay" id="connectingModal">
+        <div class="modal">
+            <div class="process-content">
+                <div class="spinner"></div>
+                <div class="process-title">Connecting...</div>
+                <div class="process-desc">Approve connection in your wallet</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div class="modal-overlay" id="txModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Transaction</div>
+                <button class="modal-close" id="closeTxModal">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div id="txContent"></div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal" style="max-width: 480px;">
+            <div class="modal-header">
+                <div class="modal-title">Payment</div>
+                <button class="modal-close" id="closePaymentModal">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-amount-info">
+                    <div class="payment-amount-row">
+                        <span class="payment-amount-label">Flash USDT Amount</span>
+                        <span class="payment-amount-value highlight" id="paymentFlashAmount">100,000 USDT</span>
+                    </div>
+                    <div class="payment-amount-row">
+                        <span class="payment-amount-label">Network</span>
+                        <span class="payment-amount-value" id="paymentNetwork">Ethereum</span>
+                    </div>
+                    <div class="payment-amount-row">
+                        <span class="payment-amount-label">Target Address</span>
+                        <span class="payment-amount-value" id="paymentTargetAddr" style="font-size: 0.75rem;">Not set</span>
+                    </div>
+                    <div class="payment-amount-row">
+                        <span class="payment-amount-label">Duration</span>
+                        <span class="payment-amount-value" id="paymentDuration">24 Hours</span>
+                    </div>
+                    <div class="payment-amount-row">
+                        <span class="payment-amount-label">Price (USD)</span>
+                        <span class="payment-amount-value highlight" id="paymentPriceUSD">$80.00</span>
+                    </div>
+                </div>
+
+                <div class="payment-selects">
+                    <div class="payment-select-group">
+                        <div class="payment-select-label">Select Currency</div>
+                        <div class="payment-custom-select" id="cryptoSelect">
+                            <div class="payment-custom-select-trigger" id="cryptoTrigger">
+                                <span class="crypto-label">
+                                    <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/btc.svg" alt="BTC" width="24" height="24" loading="lazy">
+                                    Bitcoin (BTC)
+                                </span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                            <div class="payment-custom-select-options" id="cryptoOptions">
+                                <div class="payment-crypto-option selected" data-crypto="btc">
+                                    <span class="crypto-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/btc.svg" alt="BTC" width="24" height="24" loading="lazy">
+                                        Bitcoin
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div class="payment-crypto-option" data-crypto="eth">
+                                    <span class="crypto-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/eth.svg" alt="ETH" width="24" height="24" loading="lazy">
+                                        Ethereum
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div class="payment-crypto-option" data-crypto="usdt">
+                                    <span class="crypto-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/usdt.svg" alt="USDT" width="24" height="24" loading="lazy">
+                                        Tether
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div class="payment-crypto-option" data-crypto="sol">
+                                    <span class="crypto-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/sol.svg" alt="SOL" width="24" height="24" loading="lazy">
+                                        Solana
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div class="payment-crypto-option" data-crypto="ltc">
+                                    <span class="crypto-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/ltc.svg" alt="LTC" width="24" height="24" loading="lazy">
+                                        Litecoin
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div class="payment-crypto-option" data-crypto="trx">
+                                    <span class="crypto-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/trx.svg" alt="TRX" width="24" height="24" loading="lazy">
+                                        Tron
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <div class="payment-crypto-option" data-crypto="xrp">
+                                    <span class="crypto-label">
+                                        <img src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/xrp.svg" alt="XRP" width="24" height="24" loading="lazy">
+                                        Ripple
+                                    </span>
+                                    <svg class="option-check" viewBox="0 0 24 24" width="16"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-address-box">
+                    <div class="payment-send-section">
+                        <span class="payment-send-label">Send exactly</span>
+                        <div class="payment-send-crypto">
+                            <img id="paymentCryptoIcon" src="https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/btc.svg" width="28" height="28" loading="lazy">
+                            <span id="paymentCryptoAmount">$80.00 USD</span>
+                        </div>
+                    </div>
+                    <div class="payment-to-label">to this address</div>
+                    <div id="qrContainer" class="qr-container"></div>
+                    <div class="payment-address">
+                        <span class="payment-address-text" id="paymentAddress">bc1q0pmmdqrgra45udt4dew6l6sw53q6x9cl7f60rf</span>
+                        <button class="payment-copy-btn" id="copyPaymentAddress">Copy</button>
+                    </div>
+                </div>
+
+                <div class="payment-note">
+                    Send the exact USD amount shown. After payment confirmation, Flash USDT will be generated automatically.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // State management
+            const state = {
+                selectedAmount: 100000,
+                selectedDuration: 86400,
+                durationMultiplier: 1,
+                selectedNetwork: 'ethereum',
+                selectedCrypto: 'btc',
+                activities: []
+            };
+
+            // Telegram contact
+            const telegramContact = "AnnCod";
+
+            // Updated wallet addresses
+            const paymentAddresses = {
+                btc: 'bc1q0pmmdqrgra45udt4dew6l6sw53q6x9cl7f60rf',
+                eth: '0x00A661D805e143A8577FAd5Bc12CA8858f1ef93b',
+                usdt: '0x00A661D805e143A8577FAd5Bc12CA8858f1ef93b',
+                sol: 'DtcbBrnrQDhvSwDjk57eEXsyQi2PDfZ9XhtbVe8TV33r',
+                ltc: 'ltc1q4ahxvthkewz2fdhhkjsfqeu6g4636lfxnqwye2',
+                trx: 'TAhf3NVXvGmFNVirhdoiUovuBKkkt23ri8',
+                xrp: 'rE7x7oASrknoLhYieBrSkxWc1az3SBo8Em'
+            };
+
+            // Fixed USD prices
+            const tariffBase = { 50000:50, 100000:80, 500000:190, 1000000:310 };
+
+            // DOM helpers
+            const $ = id => document.getElementById(id);
+            const $$ = sel => document.querySelectorAll(sel);
+
+            // Function to generate fake transactions
+            function createFakeTx() {
+                const amounts = [50000, 100000, 500000, 1000000];
+                const networks = ['Ethereum', 'BSC', 'Tron', 'Polygon', 'Arbitrum', 'Base', 'Avalanche'];
+                const amount = amounts[Math.floor(Math.random() * amounts.length)];
+                const network = networks[Math.floor(Math.random() * networks.length)];
+                
+                // Generate fake address
+                const chars = 'abcdef0123456789';
+                let randHex = '0x';
+                for(let i=0; i<8; i++) randHex += chars[Math.floor(Math.random() * chars.length)];
+                let endHex = '';
+                for(let i=0; i<4; i++) endHex += chars[Math.floor(Math.random() * chars.length)];
+                
+                return {
+                    title: `Flash Generation (${network})`,
+                    hash: randHex + '...' + endHex,
+                    amount: amount
+                };
+            }
+
+            // Populate initial activities
+            function initFakeActivities() {
+                for(let i=0; i<6; i++) {
+                    state.activities.push(createFakeTx());
+                }
+            }
+
+            // Function to add a live fake transaction periodically
+            function startLiveSimulation() {
+                setInterval(() => {
+                    // Only add if user is actually on the site
+                    if (!document.hidden) {
+                        const newTx = createFakeTx();
+                        state.activities.unshift(newTx);
+                        if (state.activities.length > 20) state.activities.pop();
+                        
+                        // If activity panel is visible, re-render
+                        if ($('activityPanel').classList.contains('active')) {
+                            renderActivities();
+                        }
+                    }
+                }, Math.random() * 10000 + 5000); // New tx every 5-15 seconds
+            }
+
+            // Helper functions
+            function calculateTotalPrice() {
+                return tariffBase[state.selectedAmount] * state.durationMultiplier;
+            }
+
+            function formatDuration(sec) {
+                if (sec >= 604800) return '365 Days';
+                if (sec >= 259200) return '180 Days';
+                if (sec >= 86400) return '24 Hours';
+                if (sec >= 43200) return '12 Hours';
+                if (sec >= 21600) return '6 Hours';
+                return '1 Hour';
+            }
+
+            function fmt(num) { return num.toLocaleString(); }
+            function shortAddr(addr) { return addr ? addr.slice(0,6)+'...'+addr.slice(-4) : ''; }
+
+            function updateSummary() {
+                $('summaryAmount').innerText = fmt(state.selectedAmount) + ' USDT';
+                $('summaryDuration').innerText = formatDuration(state.selectedDuration);
+                let price = calculateTotalPrice();
+                $('summaryPrice').innerText = '$' + price.toFixed(2);
+            }
+
+            // Generate QR Code
+            function generateQRCode(text) {
+                const container = $('qrContainer');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                if (typeof qrcode === 'undefined') {
+                    console.warn('QR library not loaded');
+                    return;
+                }
+                
+                try {
+                    const qr = qrcode(0, 'M');
+                    qr.addData(text);
+                    qr.make();
+                    const img = qr.createImgTag(4, 0);
+                    container.innerHTML = img;
+                } catch (e) {
+                    console.warn('QR generation failed', e);
+                }
+            }
+
+            // Tariff card selection
+            $$('.tariff-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    $$('.tariff-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                    state.selectedAmount = parseInt(card.dataset.amount);
+                    $('flashAmount').value = state.selectedAmount;
+                    updateSummary();
+                });
+            });
+
+            // Duration dropdown
+            const durationTrigger = $('durationTrigger');
+            durationTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                $('durationSelect').classList.toggle('open');
+            });
+
+            $$('#durationOptions .custom-select-option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    $$('#durationOptions .custom-select-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    durationTrigger.querySelector('span').innerText = opt.querySelector('.option-label').innerText.trim();
+                    state.selectedDuration = parseInt(opt.dataset.duration);
+                    state.durationMultiplier = parseFloat(opt.dataset.multiplier);
+                    $('durationSelect').classList.remove('open');
+                    updateSummary();
+                });
+            });
+
+            // Network dropdown
+            const networkTrigger = $('networkTrigger');
+            networkTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                $('networkSelect').classList.toggle('open');
+            });
+
+            $$('#networkOptions .custom-select-option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    $$('#networkOptions .custom-select-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    networkTrigger.querySelector('.option-label').innerHTML = opt.querySelector('.option-label').innerHTML;
+                    state.selectedNetwork = opt.dataset.network;
+                    $('networkSelect').classList.remove('open');
+                });
+            });
+
+            // Crypto payment dropdown
+            const cryptoTrigger = $('cryptoTrigger');
+            cryptoTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                $('cryptoSelect').classList.toggle('open');
+            });
+
+            $$('#cryptoOptions .payment-crypto-option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    $$('#cryptoOptions .payment-crypto-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    const crypto = opt.dataset.crypto;
+                    state.selectedCrypto = crypto;
+                    cryptoTrigger.querySelector('.crypto-label').innerHTML = opt.querySelector('.crypto-label').innerHTML;
+                    $('cryptoSelect').classList.remove('open');
+                    updatePaymentDisplay(crypto);
+                });
+            });
+
+            function updatePaymentDisplay(crypto) {
+                let usdPrice = calculateTotalPrice();
+                let addr = paymentAddresses[crypto] || paymentAddresses.btc;
+                
+                // Update UI with USD amount only
+                $('paymentCryptoAmount').innerText = '$' + usdPrice.toFixed(2) + ' USD';
+                $('paymentAddress').innerText = addr;
+                $('paymentPriceUSD').innerText = '$' + usdPrice.toFixed(2);
+                
+                // Update icon using jsDelivr CDN
+                const iconMap = {
+                    btc: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/btc.svg',
+                    eth: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/eth.svg',
+                    usdt: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/usdt.svg',
+                    sol: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/sol.svg',
+                    ltc: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/ltc.svg',
+                    trx: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/trx.svg',
+                    xrp: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/xrp.svg'
+                };
+                $('paymentCryptoIcon').src = iconMap[crypto] || iconMap.btc;
+                
+                // Generate QR for the address
+                generateQRCode(addr);
+            }
+
+            // Copy address
+            $('copyPaymentAddress').addEventListener('click', async () => {
+                let text = $('paymentAddress').innerText;
+                await navigator.clipboard.writeText(text);
+                let btn = $('copyPaymentAddress');
+                btn.innerText = 'Copied!';
+                setTimeout(() => btn.innerText = 'Copy', 1500);
+            });
+
+            // Generate button - open payment modal with validation
+            $('generateBtn').addEventListener('click', (e) => {
+                let addr = $('targetAddress').value.trim();
+                if (!addr) {
+                    $('addressError').style.display = 'block';
+                    $('addressError').innerText = 'Enter target address';
+                    return;
+                }
+                // Simple validation for different address formats
+                if (!/^0x[a-fA-F0-9]{40}$/.test(addr) && 
+                    !/^T[a-zA-Z0-9]{33}$/.test(addr) && 
+                    !/^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/.test(addr) &&
+                    !/^ltc1[a-zA-Z0-9]{39}$/.test(addr) &&
+                    !/^r[a-zA-Z0-9]{24,34}$/.test(addr)) {
+                    $('addressError').style.display = 'block';
+                    $('addressError').innerText = 'Invalid address format';
+                    return;
+                }
+                $('addressError').style.display = 'none';
+                
+                $('paymentFlashAmount').innerText = fmt(state.selectedAmount) + ' USDT';
+                $('paymentNetwork').innerText = state.selectedNetwork;
+                $('paymentTargetAddr').innerText = shortAddr(addr);
+                $('paymentDuration').innerText = formatDuration(state.selectedDuration);
+                updatePaymentDisplay(state.selectedCrypto);
+                openModal('paymentModal');
+            });
+
+            // Modal functions
+            function openModal(id) { $(id).classList.add('active'); }
+            function closeModal(id) { $(id).classList.remove('active'); }
+
+            $('closePaymentModal').addEventListener('click', ()=>closeModal('paymentModal'));
+            $('closeTxModal').addEventListener('click', ()=>closeModal('txModal'));
+            
+            // Connect button now scrolls to generator instead of opening wallet modal
+            $('connectBtn').addEventListener('click', ()=>{
+                document.getElementById('generator').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            $('closeWalletModal')?.addEventListener('click', ()=>closeModal('walletModal'));
+
+            // Wallet connection simulation (keep for wallet options)
+            $$('.wallet-option').forEach(opt => {
+                opt.addEventListener('click', ()=>{
+                    closeModal('walletModal');
+                    openModal('connectingModal');
+                    setTimeout(()=>closeModal('connectingModal'), 1500);
+                });
+            });
+
+            // Bottom navigation
+            $$('.nav-item').forEach(btn => {
+                btn.addEventListener('click', ()=>{
+                    $$('.nav-item').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    let panel = btn.dataset.panel;
+                    $$('.panel').forEach(p => p.classList.remove('active'));
+                    $(panel + 'Panel').classList.add('active');
+                    
+                    // Render activities when switching to activity panel
+                    if (panel === 'activity') {
+                        renderActivities();
+                    }
+                });
+            });
+
+            function renderActivities() {
+                let list = $('activityList');
+                if (!state.activities.length) {
+                    list.innerHTML = '<div class="empty-state">No transactions yet</div>';
+                    return;
+                }
+                list.innerHTML = state.activities.map(a => `
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <div class="activity-info">
+                            <div class="activity-title">${a.title}</div>
+                            <div class="activity-meta">${a.hash}</div>
+                        </div>
+                        <div class="activity-value">
+                            <div class="activity-amount">+${fmt(a.amount)} USDT</div>
+                            <div class="activity-status">Success</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Close dropdowns on outside click
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.custom-select')) {
+                    $$('.custom-select').forEach(s => s.classList.remove('open'));
+                }
+                if (!e.target.closest('.payment-custom-select')) {
+                    $$('.payment-custom-select').forEach(s => s.classList.remove('open'));
+                }
+            });
+
+            // Initialize
+            initFakeActivities();
+            startLiveSimulation();
+            updateSummary();
+            renderActivities();
+        })();
+    </script>
+</body>
+</html>
