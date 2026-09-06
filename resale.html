@@ -1,0 +1,477 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resale Flash USDT - Flasher</title>
+    <link rel="shortcut icon" type="image/x-icon" href="user/img/favicon.png">
+    <link rel="stylesheet" href="user/css/bootstrap.min.css">
+    <link rel="stylesheet" href="user/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="user/css/slick.css">
+    <link rel="stylesheet" href="user/css/default.css">
+    <link rel="stylesheet" href="user/css/style.css">
+    <link rel="stylesheet" href="user/css/responsive.css">
+    <style>
+        .resale-hero {
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .resale-hero .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .resale-hero .hero-subtitle {
+            color: #DF86AA;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        @media(max-width:767px){ .resale-hero .hero-title { font-size: 2.2rem; } }
+        
+        .step-card {
+            background: #0F101E;
+            border-radius: 15px;
+            padding: 30px 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: #DF86AA;
+            box-shadow: 0 10px 40px rgba(223,134,170,0.08);
+        }
+        .step-card .step-number {
+            display: inline-block;
+            background: linear-gradient(93.17deg, #DF86AA -18.55%, #7E2AFD 163.09%);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 18px;
+        }
+        .step-card .step-title {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .step-card .step-text {
+            color: #92939E;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .step-card .step-text strong {
+            color: #DF86AA;
+        }
+        .step-card .step-text .highlight {
+            color: #fff;
+        }
+        .step-card .step-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 30px;
+            opacity: 0.05;
+            color: #DF86AA;
+        }
+
+        .info-box-resale {
+            background: rgba(223,134,170,0.06);
+            border: 1px solid rgba(223,134,170,0.12);
+            border-radius: 12px;
+            padding: 25px 30px;
+            margin: 30px 0;
+        }
+        .info-box-resale .info-title {
+            color: #DF86AA;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .info-box-resale .info-text {
+            color: #92939E;
+            margin-bottom: 0;
+        }
+        .info-box-resale .info-text a {
+            color: #DF86AA;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .info-box-resale .info-text a:hover {
+            text-decoration: underline;
+        }
+
+        .email-box {
+            background: linear-gradient(135deg, rgba(223,134,170,0.08), rgba(126,42,253,0.05));
+            border: 2px dashed #DF86AA;
+            border-radius: 15px;
+            padding: 35px 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .email-box .email-label {
+            color: #92939E;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .email-box .email-address {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            font-family: monospace;
+            background: #1a1c2e;
+            padding: 12px 30px;
+            border-radius: 10px;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .email-box .email-address i {
+            color: #DF86AA;
+            margin-right: 12px;
+        }
+        .email-box .copy-email-btn {
+            background: transparent;
+            border: 1px solid #DF86AA;
+            color: #DF86AA;
+            padding: 8px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        .email-box .copy-email-btn:hover {
+            background: #DF86AA;
+            color: #fff;
+        }
+
+        .important-notes {
+            background: rgba(255,193,7,0.05);
+            border-left: 4px solid #FFC107;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin: 30px 0;
+        }
+        .important-notes .notes-title {
+            color: #FFC107;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .important-notes ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .important-notes ul li {
+            color: #92939E;
+            padding: 4px 0;
+            font-size: 15px;
+        }
+        .important-notes ul li strong {
+            color: #fff;
+        }
+
+        .back-link {
+            color: #92939E;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-link:hover { color: #DF86AA; }
+
+        @media(max-width:575px){
+            .step-card { padding: 25px 20px; }
+            .email-box .email-address { font-size: 18px; padding: 10px 16px; word-break: break-all; }
+            .info-box-resale { padding: 20px; }
+        }
+    </style>
+</head>
+<body class="home-purple-gradient">
+
+<!-- Header -->
+<header id="header" class="header-layout1">
+    <div id="sticky-header" class="menu-area transparent-header">
+        <div class="container custom-container">
+            <div class="row"><div class="col-12">
+                <div class="menu-wrap">
+                    <nav class="menu-nav">
+                        <div class="logo"><a href="index.html"><img src="user/img/logo/logo.png" style="height:50px;" alt="Logo"></a></div>
+                        <div class="navbar-wrap main-menu d-none d-lg-flex">
+                            <ul class="navigation">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="index.html#feature">Feature</a></li>
+                                <li><a href="index.html#roadMap">RoadMap</a></li>
+                                <li class="active"><a href="resale.html">Resale</a></li>
+                                <li><a href="operative.html">Operator</a></li>
+                            </ul>
+                        </div>
+                        <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                    </nav>
+                </div>
+            </div></div>
+        </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <nav class="menu-box">
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+            <div class="nav-logo"><a href="index.html"><img src="user/img/logo/logo.png" style="height:35px;" alt="Logo"></a></div>
+            <div class="menu-outer">
+                <ul class="navigation">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#feature">Feature</a></li>
+                    <li><a href="index.html#roadMap">RoadMap</a></li>
+                    <li class="active"><a href="resale.html">Resale</a></li>
+                    <li><a href="operative.html">Operator</a></li>
+                </ul>
+            </div>
+            <div class="social-links">
+                <ul class="list-wrap">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10.0596 7.34522L15.8879 0.570312H14.5068L9.44607 6.45287L5.40411 0.570312H0.742188L6.85442 9.46578L0.742188 16.5703H2.12338L7.4676 10.3581L11.7362 16.5703H16.3981L10.0593 7.34522H10.0596ZM8.16787 9.54415L7.54857 8.65836L2.62104 1.61005H4.74248L8.71905 7.29827L9.33834 8.18405L14.5074 15.5779H12.386L8.16787 9.54449V9.54415Z" fill="currentColor"/></svg></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="menu-backdrop"></div>
+</header>
+
+<!-- Resale Hero -->
+<div class="resale-hero">
+    <div class="hero-bg-gradient1"></div>
+    <div class="hero-bg-gradient2"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <p class="hero-subtitle"><i class="fas fa-exchange-alt" style="margin-right:10px;"></i> Resale Program</p>
+                <h1 class="hero-title">How to Resell Your <br><span style="color:#DF86AA;">Flash USDT</span></h1>
+                <p style="color:#92939E; font-size:1.1rem; max-width:600px;">
+                    Follow these steps to resell your Flash USDT and receive real USDT in return.
+                </p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="alltuchtopdown">
+                    <img src="user/img/update/normal/why_1-1.png" alt="Resale" style="max-width:250px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Steps Section -->
+<div class="container" style="padding-bottom:80px;">
+    <div class="row gy-4">
+        
+        <!-- Step 1 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="step-card">
+                <span class="step-icon"><i class="fas fa-coins"></i></span>
+                <span class="step-number">1</span>
+                <h4 class="step-title">Minimum Balance Requirement</h4>
+                <p class="step-text">
+                    You must have a minimum of <strong>20 Flash USDT</strong> in your wallet to initiate a resale request.
+                    <br><span style="color:#92939E;font-size:14px;">Ensure your balance meets this requirement before proceeding.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="step-card">
+                <span class="step-icon"><i class="fas fa-calendar-alt"></i></span>
+                <span class="step-number">2</span>
+                <h4 class="step-title">Holding Period Requirement</h4>
+                <p class="step-text">
+                    The Flash USDT must be at least <strong>20 days old</strong> from the purchase date.
+                    <br><span style="color:#92939E;font-size:14px;">Tokens purchased recently (less than 20 days old) are not eligible for resale.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="step-card">
+                <span class="step-icon"><i class="fas fa-envelope"></i></span>
+                <span class="step-number">3</span>
+                <h4 class="step-title">Email Verification</h4>
+                <p class="step-text">
+                    You must use the <strong>same email ID</strong> that you provided when purchasing Flash USDT.
+                    <br><span style="color:#92939E;font-size:14px;">If you use a different email, your request may be rejected.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="step-card">
+                <span class="step-icon"><i class="fas fa-camera"></i></span>
+                <span class="step-number">4</span>
+                <h4 class="step-title">Proof of Ownership</h4>
+                <p class="step-text">
+                    Provide proof that you currently hold the required Flash USDT in your wallet.
+                    <br><span style="color:#92939E;font-size:14px;">Send screenshots showing:</span>
+                </p>
+                <ul style="color:#92939E;font-size:14px;padding-left:20px;margin-top:8px;">
+                    <li>✓ Your Flash USDT balance</li>
+                    <li>✓ Transaction history (including original purchase date)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="step-card">
+                <span class="step-icon"><i class="fas fa-paper-plane"></i></span>
+                <span class="step-number">5</span>
+                <h4 class="step-title">Sending Verification Email</h4>
+                <p class="step-text">
+                    Send all required proofs (wallet screenshots & transaction details) to:
+                    <br><strong style="color:#DF86AA;font-size:16px;">flasherusdt11@gmail.com</strong>
+                    <br><span style="color:#92939E;font-size:14px;">Ensure all information is clear and correct to avoid delays.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="step-card">
+                <span class="step-icon"><i class="fas fa-check-circle"></i></span>
+                <span class="step-number">6</span>
+                <h4 class="step-title">Verification &amp; Wallet Address Request</h4>
+                <p class="step-text">
+                    Our team will review your request and respond within <strong>30 minutes</strong> via email.
+                    <br><span style="color:#92939E;font-size:14px;">Once verified, we will request your wallet address to transfer real USDT in exchange for Flash USDT.</span>
+                    <br><strong style="color:#4CAF50;font-size:14px;display:block;margin-top:8px;">✓ Transaction processed immediately after receiving wallet address.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Box -->
+    <div class="email-box">
+        <div class="email-label">
+            <i class="fas fa-envelope" style="color:#DF86AA;margin-right:8px;"></i>
+            Send your verification email to:
+        </div>
+        <div class="email-address" id="resaleEmail">
+            <i class="fas fa-envelope"></i> flasherusdt11@gmail.com
+        </div>
+        <br>
+        <button class="copy-email-btn" onclick="copyEmail()">
+            <i class="fas fa-copy"></i> Copy Email
+        </button>
+    </div>
+
+    <!-- Important Notes -->
+    <div class="important-notes">
+        <div class="notes-title">
+            <i class="fas fa-exclamation-triangle" style="margin-right:10px;"></i>
+            Important Notes
+        </div>
+        <ul>
+            <li>✔ Make sure all details and screenshots are <strong>accurate</strong>.</li>
+            <li>✔ If any information is missing, your request may be <strong>delayed</strong>.</li>
+            <li>✔ Contact support if you have any issues with verification.</li>
+        </ul>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a href="index.html" class="btn btn2">
+            <i class="fas fa-arrow-left" style="margin-right:10px;"></i> Back to Home
+        </a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer-wrapper footer-layout1 position-relative">
+    <div class="bg-gradient-1"><img src="user/img/update/bg/bg-gradient1-1.jpg" alt=""></div>
+    <div class="container">
+        <div class="footer-menu-area">
+            <div class="row gy-4 justify-content-between align-items-center">
+                <div class="col-xl-5 col-lg-4">
+                    <div class="social-btn">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10.0596 7.34522L15.8879 0.570312H14.5068L9.44607 6.45287L5.40411 0.570312H0.742188L6.85442 9.46578L0.742188 16.5703H2.12338L7.4676 10.3581L11.7362 16.5703H16.3981L10.0593 7.34522H10.0596ZM8.16787 9.54415L7.54857 8.65836L2.62104 1.61005H4.74248L8.71905 7.29827L9.33834 8.18405L14.5074 15.5779H12.386L8.16787 9.54449V9.54415Z" fill="currentColor"/></svg></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-8 text-lg-end">
+                    <ul class="footer-menu-list">
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="#">OUR PROJECTS</a></li>
+                        <li><a href="#">OUR TEAM</a></li>
+                        <li><a href="#">NEWS FAQ</a></li>
+                        <li><a href="#">DOCUMENTS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-wrap">
+        <div class="container">
+            <div class="row gy-3 justify-content-between">
+                <div class="col-lg-6">
+                    <p class="copyright-text">Copyright © 2024 <a href="index.html">Flasher.</a> All rights reserved.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <ul class="footer-links">
+                        <li><a href="#">Job &amp; Career</a></li>
+                        <li><a href="#">Terms and Condition</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="user/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="user/js/bootstrap.min.js"></script>
+<script src="user/js/slick.min.js"></script>
+<script src="user/js/main.js"></script>
+<script>
+    // Copy email function
+    function copyEmail() {
+        const email = 'flasherusdt11@gmail.com';
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(email).then(() => {
+                showCopySuccess();
+            });
+        } else {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showCopySuccess();
+        }
+    }
+
+    function showCopySuccess() {
+        const btn = document.querySelector('.copy-email-btn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        btn.style.borderColor = '#4CAF50';
+        btn.style.color = '#4CAF50';
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.borderColor = '#DF86AA';
+            btn.style.color = '#DF86AA';
+        }, 2500);
+    }
+</script>
+</body>
+</html>
